@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>City Life — Interactive Board</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <!-- background orbs -->
+    <div class="orb"></div>
+
+    <div class="wrap">
+        <header>
+            <div class="brand">
+                <div class="logo" aria-hidden="true"></div>
+                <div>
+                    <h1>City Life — Interactive Board</h1>
+                    <p class="subtitle">A playful page with greetings, quick actions, an inspirational quote, and live Dammam
+                        weather.</p>
+                </div>
+            </div>
+            <span class="pill">Made with JavaScript ⚡</span>
+        </header>
+
+        <div class="grid">
+            <!-- Scenario 1: Welcome Board -->
+            <section id="t1">
+                <h2>Welcome Board</h2>
+                <hr class="divider" />
+                <p id="t1-msg" class="muted"></p>
+                <p class="muted">A friendly message appears when you open the page.</p>
+            </section>
+
+            <!-- Scenario 2: Interaction Corner -->
+            <section id="t2">
+                <h2>Interaction Corner</h2>
+                <hr class="divider" />
+                <p id="t2-status" class="muted">Press the button to reveal a note…</p>
+                <button id="t2-btn" aria-label="Reveal note">Reveal Note ✨</button>
+            </section>
+
+            <!-- Scenario 3: Inspiring Quote Board -->
+            <section id="t3">
+                <h2>Inspiring Quote Board</h2>
+                <hr class="divider" />
+                <button id="t3-loadQuote" aria-label="Show random quote">Inspire Me ✨</button>
+                <p id="t3-quote" class="muted" style="margin-top:12px;"></p>
+                <p id="t3-author" class="muted" aria-live="polite"></p>
+                <p class="muted">Click the button to see a new inspirational quote every time.</p>
+            </section>
+
+            <!-- Scenario 4: Dammam Weather Now -->
+            <section id="t4">
+                <h2>Dammam Weather Now</h2>
+                <hr class="divider" />
+                <div class="card">
+                    <p class="pulse muted" aria-live="polite">Live data</p>
+                    <div class="row"><span>Temperature</span><strong><span id="t4-temp">—</span></strong></div>
+                    <div class="row"><span>Humidity</span><strong><span id="t4-hum">—</span></strong></div>
+                    <div class="row"><span>Wind Speed</span><strong><span id="t4-wind">—</span></strong></div>
+                    <button id="t4-loadWx" aria-label="Load current weather for Dammam">Check Weather ☁️</button>
+                    <p id="t4-err" style="color:#ff8da1; margin:8px 0 0;"></p>
+                </div>
+                <p class="muted">Shows current conditions for Dammam in metric units.</p>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>

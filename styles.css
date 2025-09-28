@@ -1,0 +1,287 @@
+:root {
+    --bg1: #0f1020;
+    --bg2: #1a1b3a;
+    --card: #151633cc;
+    /* glass card */
+    --accent: #7c5cff;
+    /* primary accent */
+    --accent-2: #00e5ff;
+    /* secondary accent */
+    --text: #f3f5ff;
+    --muted: #c9cbe6;
+    --glow: 0 0 18px rgba(124, 92, 255, .55), 0 0 34px rgba(0, 229, 255, .25);
+    --radius: 18px;
+}
+
+/* ===== Page background (animated gradient) ===== */
+body {
+    margin: 0;
+    min-height: 100svh;
+    color: var(--text);
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+    background: radial-gradient(1200px 800px at 10% 0%, #322a75 0%, transparent 60%),
+        radial-gradient(1200px 800px at 90% 100%, #0b7e8c 0%, transparent 60%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+    overflow-x: hidden;
+}
+
+/* floating glow orbs */
+.orb,
+.orb:after {
+    position: fixed;
+    inset: auto;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: .3;
+    pointer-events: none;
+    animation: float 16s ease-in-out infinite;
+    z-index: 0;
+}
+
+.orb {
+    background: radial-gradient(circle at 30% 30%, #7c5cff, transparent 55%);
+    top: -80px;
+    left: -120px;
+}
+
+.orb:after {
+    content: "";
+    background: radial-gradient(circle at 70% 70%, #00e5ff, transparent 55%);
+    bottom: -100px;
+    right: -140px;
+    animation-delay: -6s;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) translateX(0) scale(1);
+    }
+
+    50% {
+        transform: translateY(20px) translateX(10px) scale(1.03);
+    }
+}
+
+/* ===== Layout ===== */
+.wrap {
+    position: relative;
+    z-index: 1;
+    padding: 40px 22px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 26px;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: conic-gradient(from 210deg, var(--accent), var(--accent-2));
+    box-shadow: var(--glow);
+}
+
+h1 {
+    margin: 0;
+    letter-spacing: .2px;
+    font-weight: 800;
+    font-size: clamp(22px, 3vw, 30px);
+}
+
+.subtitle {
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: clamp(13px, 1.7vw, 15px);
+}
+
+/* ===== Sections (cards) ===== */
+.grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+section {
+    background: var(--card);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: var(--radius);
+    padding: 18px 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+    transform: translateY(12px);
+    opacity: 0;
+    animation: rise .8s ease forwards;
+}
+
+section:nth-child(1) {
+    animation-delay: .05s;
+}
+
+section:nth-child(2) {
+    animation-delay: .15s;
+}
+
+section:nth-child(3) {
+    animation-delay: .25s;
+}
+
+section:nth-child(4) {
+    animation-delay: .35s;
+}
+
+@keyframes rise {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+h2 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: .3px;
+    background: linear-gradient(90deg, #fff, #d6ddff 40%, #a5ffe9);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+p,
+.muted {
+    color: var(--muted);
+    margin: 8px 0 0;
+    font-size: 14px;
+}
+
+/* ===== Buttons ===== */
+button {
+    border: 0;
+    outline: 0;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #0b0b18;
+    font-weight: 800;
+    letter-spacing: .2px;
+    padding: 10px 14px;
+    border-radius: 14px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(124, 92, 255, .45), 0 2px 0 rgba(0, 0, 0, .25) inset;
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+button:hover {
+    transform: translateY(-2px) scale(1.02);
+    filter: saturate(1.1);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 12px rgba(124, 92, 255, .35);
+}
+
+/* ===== Media / content helpers ===== */
+.card {
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 16px;
+    padding: 14px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .03));
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 8px 0;
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 999px;
+    padding: 6px 10px;
+    font-size: 12px;
+    color: #e9ecff;
+}
+
+img {
+    max-width: 100%;
+    border-radius: 14px;
+    margin-top: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+}
+
+/* subtle shimmering divider */
+.divider {
+    height: 1px;
+    border: none;
+    margin: 10px 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .35), transparent);
+    opacity: .4;
+}
+
+/* Animated pulse for live data label */
+.pulse {
+    position: relative;
+    padding-left: 22px;
+}
+
+.pulse:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    transform: translateY(-50%);
+    border-radius: 50%;
+    background: var(--accent-2);
+    box-shadow: 0 0 0 0 rgba(0, 229, 255, .6);
+    animation: ping 1.8s infinite;
+}
+
+@keyframes ping {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 229, 255, .6);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 229, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 229, 255, 0);
+    }
+}
+
+.fade-in { opacity: 0; transition: opacity .35s ease; }
+.fade-in.show { opacity: 1; }
+
+/* Small screens */
+@media (max-width: 480px) {
+    .wrap {
+        padding: 28px 14px 56px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
