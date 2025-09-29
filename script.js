@@ -4,6 +4,8 @@
 All tasks in one file (script.js)
 =======================================
 */
+document.addEventListener("DOMContentLoaded", function () {
+    // all your DOM code here
 
 /*  
 =======================================
@@ -19,7 +21,9 @@ inside the <p> element with id="t1-msg".
 💡 Hint:
 document.getElementById("t1-msg").innerHTML = "Hello, World!";
 */
- 
+
+document.getElementById("t1-msg").innerHTML = "Hello, World!";
+
 
 /*  
 =======================================
@@ -94,3 +98,4 @@ data.main.temp      → temperature (°C)
 data.main.humidity  → humidity (%)
 data.wind.speed     → wind speed (m/s)
 */
+});
