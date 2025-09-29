@@ -134,38 +134,33 @@ weatherBtn.addEventListener("click", async function () {
   const windEl = document.getElementById("t4-wind");
   const errEl  = document.getElementById("t4-err");
 
-  // Build API URL with query parameters
   const base  = "https://api.openweathermap.org/data/2.5/weather";
-  const city  = "Dammam,sa"; // Dammam, Saudi Arabia
+  const city  = "Dammam,sa";
   const units = "metric";
-  const key   = "f8ecf5f88455b64f2f790ad9d0299a72"; // 🔑 your API key
+  const key   = "f8ecf5f88455b64f2f790ad9d0299a72"; // API key
   const url   = `${base}?q=${encodeURIComponent(city)}&appid=${key}&units=${units}`;
 
   try {
-    // Simple loading state
     weatherBtn.disabled = true;
-    errEl.textContent = "⏳ Loading…";
+    errEl.textContent = "Loading…";
     tempEl.textContent = "—";
     humEl.textContent  = "—";
     windEl.textContent = "—";
 
-    // Fetch weather
+  
     const res = await fetch(url);
     if (!res.ok) throw new Error("HTTP " + res.status);
 
     const data = await res.json();
 
-    // Use JSON fields
     tempEl.textContent = data.main.temp + " °C";
     humEl.textContent  = data.main.humidity + " %";
     windEl.textContent = data.wind.speed + " m/s";
-    errEl.textContent  = ""; // clear loading/error
+    errEl.textContent  = "";
   } catch (err) {
-    // Friendly error
-    errEl.textContent = "⚠️ Could not load weather data.";
+    errEl.textContent = "Could not load weather data.";
     console.error(err);
   } finally {
-    // Always re-enable button
     weatherBtn.disabled = false;
   }
 });
