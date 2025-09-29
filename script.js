@@ -79,15 +79,26 @@ data.author    // the author
 */
 
 const API_Button = document.getElementById("t3-loadQuote");
-
 API_Button.addEventListener("click", function () {
     fetch("https://dummyjson.com/quotes/random")
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById("t3-quote").innerHTML = `"${data.quote}"`;
-            document.getElementById("t3-author").innerHTML = `— ${data.author}`;
-        })
+    .then(function (response) {
+      if (!response.ok) {                 // not 2xx → treat as an error
+        throw new Error("HTTP " + response.status);
+      }
+      return response.json();             // turn response body into JS object
+    })
+    .then(function (data) {
+      // use the JSON data here
+      document.getElementById("t3-quote").textContent = `"${data.quote}"`;
+      document.getElementById("t3-author").textContent = `— ${data.author}`;
+    })
+    .catch(function (err) {
+        document.getElementById("t3-quote").textContent =
+        "Could not load quote. Please try again.";});
 });
+
+
+
 
 
 /*  
@@ -114,4 +125,5 @@ data.main.temp      → temperature (°C)
 data.main.humidity  → humidity (%)
 data.wind.speed     → wind speed (m/s)
 */
+
 });
