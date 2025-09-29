@@ -46,7 +46,7 @@ button.addEventListener("click", function () {
 */
  
 const button = document.getElementById("t2-btn");
-    button.addEventListener("click", function () {
+button.addEventListener("click", function () {
       document.getElementById("t2-status").innerHTML = "You clicked the button!";
 });
 
@@ -77,7 +77,18 @@ Use:
 data.content   // the quote text
 data.author    // the author
 */
- 
+
+const API_Button = document.getElementById("t3-loadQuote");
+
+API_Button.addEventListener("click", function () {
+    fetch("https://dummyjson.com/quotes/random")
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("t3-quote").innerHTML = `"${data.quote}"`;
+            document.getElementById("t3-author").innerHTML = `— ${data.author}`;
+        })
+});
+
 
 /*  
 =======================================
